@@ -20,16 +20,18 @@ Route::get('logout', function() {
 Route::controller('mod','ModController');
 Route::controller('config','ConfigController');
 Route::controller('changelog','ChangelogController');
+Route::controller('concept','ConceptController');
 
 Route::get('test', function()
 {
     return View::make('test');
 });
 
-Route::controller('/','IndexController');
-
-
-Route::get('/hello', function()
+Route::get('/', function()
 {
 	return View::make('hello');
 });
+
+//Route::controller('/','IndexController');
+
+
