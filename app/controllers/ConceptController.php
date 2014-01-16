@@ -22,8 +22,8 @@ class ConceptController extends BaseController
         return View::make('concept.site');
     }
     
-    public function getVexatos ()
+    public function getSiteedit ()
     {
-        return View::make('concept.vexatos');
+        return View::make('concept.siteedit');
     }
 }

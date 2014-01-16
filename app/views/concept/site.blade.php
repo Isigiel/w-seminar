@@ -25,7 +25,14 @@
     <div class="col-md-9">
         <div class="panel panel-default">
             <div class="panel-heading">
+            <div class="row">
+            <div class="col-md-10">
                 <h2 class="panel-title">Main Site Body</h2>
+            </div>
+            <div class="col-md-2">
+                <a href="{{URL::to('concept/siteedit')}}" type="button" class="btn btn-warning btn-xs pull-right">Edit Site</a>
+            </div>
+            </div>
             </div>
             <div class="panel-body">
                 <div class="row">

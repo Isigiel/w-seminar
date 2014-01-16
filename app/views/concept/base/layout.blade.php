@@ -44,6 +44,42 @@
                         </li>
                         @show
                     </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                            <a data-toggle="dropdown" href="#">Login&nbsp;</a>
+                            <div class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                            <div class="row">
+                            <div class="col-md-10 col-md-offset-1">
+                            <br>
+                            <br>
+                            <form role="form">
+                                <div class="row">
+                                <div class="col-md-11">
+                                <div class="form-group">
+                                    <input type="email" class="form-control" placeholder="Enter email">
+                                </div>
+                                </div>
+                                </div>
+                                <div class="row">
+                                <div class="col-md-11">
+                                <div class="form-group">
+                                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                                </div>
+                                </div>
+                                </div>
+                                <div class="row">
+                                <div class="col-md-11">
+                                    <button type="submit" class="btn btn-block btn-sm btn-success">Login</button>
+                                    <br>
+                                </div>
+                                </div>
+                            </form>
+                            </div>
+                            <div class="col-md-1"></div>
+                            </div>
+                            </div>
+                    </li>
+                    </ul>
                 </div>
             </nav>
             <div class="alert alert-danger">
