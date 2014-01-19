@@ -26,4 +26,9 @@ class ConceptController extends BaseController
     {
         return View::make('concept.siteedit');
     }
+    
+    public function getMarkdown ()
+    {
+        return View::make('concept.markdown');
+    }
 }

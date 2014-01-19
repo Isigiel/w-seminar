@@ -69,6 +69,12 @@
                             <img class="media-object" src="http://placehold.it/100x100">
                         </a>
                         <div class="media-body">
+                        <div class="pull-right">
+                        
+                        <span class="label label-primary">API</span>
+                        <span class="label label-success">Open Source</span>
+                        
+                        </div>
                             <h4 class="media-heading">Random Mod #2</h4>
                             Some Descriptional stuff maybe a little bit more then this, I hope the useres won't be as lazy as I am :)
                         </div>

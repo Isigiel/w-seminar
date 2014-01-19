@@ -8,7 +8,7 @@
 
 @section('body')
 
-<div class="container">
+<div class="container" style="width:75%;">
     <div class="row">
         <div class="col-md-12">
 
@@ -79,6 +79,7 @@
                             </div>
                             </div>
                     </li>
+                    <li>t</li>
                     </ul>
                 </div>
             </nav>
