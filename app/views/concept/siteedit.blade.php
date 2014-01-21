@@ -196,7 +196,7 @@ For more information check out:
                     <div class="col-md-6">
                     <div class="checkbox">
                                 <label>
-                                    <input type="checkbox">Links my othe mods
+                                    <input type="checkbox">Link my other mods
                                 </label>
                             </div>
                     <p>More to come soon...</p>

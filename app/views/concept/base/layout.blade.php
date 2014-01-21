@@ -8,7 +8,7 @@
 
 @section('body')
 
-<div class="container" style="width:75%;">
+<div class="container" >
     <div class="row">
         <div class="col-md-12">
 
@@ -45,6 +45,7 @@
                         @show
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
+                    
                     <li class="dropdown">
                             <a data-toggle="dropdown" href="#">Login&nbsp;</a>
                             <div class="dropdown-menu" role="menu" aria-labelledby="dLabel">
@@ -79,6 +80,7 @@
                             </div>
                             </div>
                     </li>
+                    <li>t</li>
                     <li>t</li>
                     </ul>
                 </div>
