@@ -135,12 +135,12 @@
                         <h4>Recommended Links</h4>
                         <ul class="fa-ul">
                             <li>
-                                <i class="fa-li fa fa-arrow-right"></i>
-                                <a href="#">Check out this Mod</a>
+                                <i class="fa-li fa fa-book"></i>
+                                <a href="#">Documentation</a>
                             </li>
                             <li>
-                                <i class="fa-li fa fa-arrow-right"></i>
-                                <a href="#">Check out this Site</a>
+                                <i class="fa-li fa fa-comments-o"></i>
+                                <a href="{{URL::to('concept/blog')}}">Check out the official Blog</a>
                             </li>
                             <li>
                                 <i class="fa-li fa fa-arrow-right"></i>

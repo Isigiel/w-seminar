@@ -31,4 +31,14 @@ class ConceptController extends BaseController
     {
         return View::make('concept.markdown');
     }
+    
+    public function getRegister ()
+    {
+        return View::make('concept.register');
+    }
+    
+    public function getBlog ()
+    {
+        return View::make('concept.blog');
+    }
 }

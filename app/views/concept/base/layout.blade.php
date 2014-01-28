@@ -74,6 +74,12 @@
                                     <br>
                                 </div>
                                 </div>
+                                <div class="row">
+                                <div class="col-md-11">
+                                    <a href="{{URL::to('concept/register')}}" type="submit" class="btn btn-block btn-sm btn-primary">Register</a>
+                                    <br>
+                                </div>
+                                </div>
                             </form>
                             </div>
                             <div class="col-md-1"></div>

@@ -193,10 +193,24 @@ For more information check out:
                     <div class="tab-pane fade" id="sidebar">
                     <form>
                     <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                     <div class="checkbox">
                                 <label>
                                     <input type="checkbox">Link my other mods
+                                </label>
+                            </div>
+                    </div>
+                    <div class="col-md-4">
+                    <div class="checkbox">
+                                <label>
+                                    <input type="checkbox">Link A Documentation
+                                </label>
+                            </div>
+                    </div>
+                    <div class="col-md-4">
+                    <div class="checkbox">
+                                <label>
+                                    <input type="checkbox">Link a Blog
                                 </label>
                             </div>
                     <p>More to come soon...</p>

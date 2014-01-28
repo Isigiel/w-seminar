@@ -43,6 +43,7 @@
                 <br>Most Followers
                 <br>Most recent
                 <br>Most Downloaded
+                <br>Category
                 <br>Newest
             </div>
         </div>
@@ -60,8 +61,9 @@
                             <img class="media-object" src="http://placehold.it/100x100">
                         </a>
                         <div class="media-body">
-                            <h4 class="media-heading">Random Mod</h4>
-                            Some Descriptional stuff maybe a little bit more then this, I hope the useres won't be as lazy as I am :)
+                            <a href="{{URL::to('concept/site')}}"><h4 class="media-heading">Random Mod</h4></a>
+                            <p>Some Descriptional stuff maybe a little bit more then this, I hope the useres won't be as lazy as I am :)</p>
+                            <small class="pull-right">King Lemming</small>
                         </div>
                     </li>
                     <li class="media">
@@ -71,8 +73,9 @@
                         <div class="media-body">
                         <div class="pull-right">
                         
-                        <span class="label label-primary">API</span>
-                        <span class="label label-success">Open Source</span>
+                        <span class="label label-primary">&nbsp;<i class="fa fa-tags"></i>&nbsp;</span>
+                        <span class="label label-success">&nbsp;<i class="fa fa-unlock"></i>&nbsp;</span>
+                        <span class="label label-danger">&nbsp;<i class="fa fa-flask"></i>&nbsp;</span>
                         
                         </div>
                             <h4 class="media-heading">Random Mod #2</h4>
