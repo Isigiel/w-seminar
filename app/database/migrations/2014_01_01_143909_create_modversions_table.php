@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateChangelogsTable extends Migration {
+class CreateModversionsTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,12 +12,16 @@ class CreateChangelogsTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('changelogs', function(Blueprint $table)
+		Schema::create('modversions', function(Blueprint $table)
 		{
 			$table->increments('id');
 			$table->timestamps();
-			$table->string('modversion_id');
-			$table->text('content');
+			$table->string('mod-id');
+			$table->string('version');
+			$table->string('mc-version');
+			$table->string('stablility');
+			$table->string('path');
+			$table->integer('downloads');
 		});
 	}
 
@@ -28,7 +32,7 @@ class CreateChangelogsTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('changelogs');
+		Schema::drop('modversions');
 	}
 
 }

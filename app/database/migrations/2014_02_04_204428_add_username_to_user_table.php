@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateConfigsTable extends Migration {
+class AddUsernameToUserTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,13 +12,9 @@ class CreateConfigsTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('configs', function(Blueprint $table)
+		Schema::table('users', function(Blueprint $table)
 		{
-			$table->increments('id');
-			$table->timestamps();
-			$table->string('modversion_id');
-			$table->text('content');
-			
+			$table->string('username');
 		});
 	}
 
@@ -29,7 +25,10 @@ class CreateConfigsTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('configs');
+		Schema::table('users', function(Blueprint $table)
+		{
+			$table->dropColumn('username');
+		});
 	}
 
 }

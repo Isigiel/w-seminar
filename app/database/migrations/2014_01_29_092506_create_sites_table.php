@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateModsTable extends Migration {
+class CreateSitesTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,16 +12,14 @@ class CreateModsTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('mods', function(Blueprint $table)
+		Schema::create('sites', function(Blueprint $table)
 		{
 			$table->increments('id');
 			$table->timestamps();
-			$table->string('name');
-			$table->string('author');
-		    $table->string('tags');
-		    $table->string('category');
-			$table->text('description');
-			$table->integer('followers');
+			$table->string('title');
+			$table->string('mod-id');
+			$table->string('content');
+			$table->string('html');
 		});
 	}
 
@@ -32,7 +30,7 @@ class CreateModsTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('mods');
+		Schema::drop('sites');
 	}
 
 }

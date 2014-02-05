@@ -11,18 +11,18 @@
     
     <!-- Codemirror and marked dependencies -->
     <script src="https://code.jquery.com/jquery.js"></script>
-    <link rel="stylesheet" href="http://new.awesonium.com/codemirror-3.21/lib/codemirror.css">
-    <script src="http://new.awesonium.com/codemirror-3.21/lib/codemirror.js"></script>
-    <script src="http://new.awesonium.com/codemirror-3.21/mode/markdown/markdown.js"></script>
-    <script src="http://new.awesonium.com/codemirror-3.21/addon/mode/overlay.js"></script>
-    <script src="http://new.awesonium.com/codemirror-3.21/mode/xml/xml.js"></script>
-    <script src="http://new.awesonium.com/codemirror-3.21/mode/gfm/gfm.js"></script>
-    <script src="http://new.awesonium.com/marked/marked.js"></script>
+    <link rel="stylesheet" href="http://cdn.awesonium.com/codemirror-3.21/lib/codemirror.css">
+    <script src="http://cdn.awesonium.com/codemirror-3.21/lib/codemirror.js"></script>
+    <script src="http://cdn.awesonium.com/codemirror-3.21/mode/markdown/markdown.js"></script>
+    <script src="http://cdn.awesonium.com/codemirror-3.21/addon/mode/overlay.js"></script>
+    <script src="http://cdn.awesonium.com/codemirror-3.21/mode/xml/xml.js"></script>
+    <script src="http://cdn.awesonium.com/codemirror-3.21/mode/gfm/gfm.js"></script>
+    <script src="http://cdn.awesonium.com/marked/marked.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/uikit/2.1.0/js/uikit.min.js"></script>
     
     <!-- Markdown Area JavaScript and CSS -->
-    <script src="http://new.awesonium.com/uikit-2.1.0/addons/js/markdownarea.js"></script>
-    <link rel="stylesheet" href="http://new.awesonium.com/uikit-2.1.0/addons/css/markdownarea.css">
+    <script src="http://cdn.awesonium.com/uikit-2.1.0/addons/js/markdownarea.js"></script>
+    <link rel="stylesheet" href="http://cdn.awesonium.com/uikit-2.1.0/addons/css/markdownarea.css">
     
     <!-- Latest compiled and minified JavaScript -->
     <script src="http://awesonium.com/cdn/flatstrap/bootstrap.min.js"></script>
