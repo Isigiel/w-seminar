@@ -13,9 +13,10 @@
                                 $message
                                 </div>
                                 </div>";
+                $alerts[0] = str_replace("col-lg-12", "col-lg-6", $alerts[0]);
                 Session::put("alert",$alerts);
             } else {
-                $alerts[0] = "  <div class=\"col-lg-6 col-md-12\">
+                $alerts[0] = "  <div class=\"col-lg-12 col-md-12\">
                                 <div class=\"alert alert-$type \">
                                 <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button>
                                 $message
