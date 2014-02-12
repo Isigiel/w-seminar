@@ -24,7 +24,8 @@ Route::controller('concept','ConceptController');
 
 Route::get('test', function()
 {
-    return View::make('test');
+    $test="hero";
+    return View::make('test')->with("test",$test);
 });
 
 Route::get('/', function()
