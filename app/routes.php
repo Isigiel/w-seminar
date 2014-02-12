@@ -19,7 +19,7 @@ Route::get('logout', function() {
 
 Route::controller('mod','ModController');
 Route::controller('config','ConfigController');
-Route::controller('changelog','ChangelogController');
+Route::controller('register','RegisterController');
 Route::controller('concept','ConceptController');
 
 Route::get('test', function()

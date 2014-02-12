@@ -31,24 +31,24 @@
                 </h1>
             </div>
             <div class="panel-body">
-                <form>
+                <form method="post" action="{{URL::to('register/submit')}}" >
                     <div class="row">
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="Username">Username</label>
-                                <input type="text" class="form-control" id="Username" placeholder="Enter your username">
+                                <input type="text" name="username" class="form-control" id="Username" placeholder="Enter your username">
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="password">Password</label>
-                                <input type="password" class="form-control" id="password" placeholder="Enter your password">
+                                <input type="password" class="form-control" name="password" id="password" placeholder="Enter your password">
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="passwordr">Repeat Password</label>
-                                <input type="password" class="form-control" id="passwordr" placeholder="Please Repeat your Password">
+                                <input type="password" name="password_confirmation" class="form-control" id="passwordr" placeholder="Please Repeat your Password">
                             </div>
                         </div>
                     </div>
@@ -56,19 +56,19 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="email">Email</label>
-                                <input type="email" class="form-control" id="email" placeholder="Enter your Email-address">
+                                <input type="email" name="email" class="form-control" id="email" placeholder="Enter your Email-address">
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="fname">First Name</label>
-                                <input type="text" class="form-control" id="fname" placeholder="Enter your first name">
+                                <input type="text" class="form-control" name="fname" id="fname" placeholder="Enter your first name">
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="name">Name</label>
-                                <input type="text" class="form-control" id="name" placeholder="Enter your last name">
+                                <input type="text" class="form-control" name="name" id="name" placeholder="Enter your last name">
                             </div>
                         </div>
                     </div>

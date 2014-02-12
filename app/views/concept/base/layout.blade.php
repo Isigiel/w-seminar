@@ -95,6 +95,7 @@
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                 <strong>Warning!</strong>&nbsp;All sites for design testing purposes only! No functionality just now!!
             </div>
+            {{Alert::render()}}
 
         </div>
     </div>

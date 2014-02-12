@@ -25,7 +25,7 @@
     <link rel="stylesheet" href="http://cdn.awesonium.com/uikit-2.1.0/addons/css/markdownarea.css">
     
     <!-- Latest compiled and minified JavaScript -->
-    <script src="http://awesonium.com/cdn/flatstrap/bootstrap.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -36,7 +36,7 @@
     
     @yield('head')
   </head>
-  <body style="background-image: url(http://awesonium.com/cdn/pattern/white_carbon.png); background-position: initial initial; background-repeat: initial initial; padding-top: 70px;">
+  <body style="background-image: url(http://cdn.awesonium.com/pattern/white_carbon.png); background-position: initial initial; background-repeat: initial initial; padding-top: 70px;">
     
     
     @yield('body')
