@@ -42,7 +42,7 @@ class RegisterController extends BaseController
         
         Session::put('data',$data);
         
-        Mail::send('emails.activate', $data, function($message) use ($data)
+        Mail::queue('emails.activate', $data, function($message) use ($data)
         {
             $message->to($data["email"], $data["name"])->subject('Welcome at Synopsis!');
         });
@@ -59,11 +59,12 @@ class RegisterController extends BaseController
         {
             // Find the user using the user id
             $user = Sentry::findUserById($id);
+            $name = $user->username;
 
             // Attempt to activate the user
             if ($user->attemptActivation($key))
             {
-                echo 'User is activated now.';
+                Alert::add("success","<strong>$name</strong>, your account is activated now");;
             }
             else
             {
@@ -72,11 +73,13 @@ class RegisterController extends BaseController
         }
         catch (Cartalyst\Sentry\Users\UserNotFoundException $e)
         {
-            echo 'User was not found.';
+            Alert::add("danger","The used Link was invalid!");
         }
         catch (Cartalyst\Sentry\Users\UserAlreadyActivatedException $e)
         {
-            echo 'User is already activated.';
+            Alert::add("info","This user is already activated");;
         }
+        
+        return Redirect::to('concept/layout');
     }
 }
