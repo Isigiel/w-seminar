@@ -1,7 +1,7 @@
-@extends('concept.base.layout')
+@extends('base.layout')
 
 @section('head')
-<title>Mod Browser Concept</title>
+<title>Mod Browser</title>
 @stop
 
 @section('nav')
@@ -9,13 +9,10 @@
     <a href="{{URL::to('concept/layout')}}">Home</a>
 </li>
 <li>
-    <a href="{{URL::to('concept/modsub')}}">Mod Submission</a>
+    <a href="{{URL::to('mod/new')}}">Mod Submission</a>
 </li>
 <li class="active">
-    <a href="{{URL::to('concept/browse')}}">Browse Mods</a>
-</li>
-<li>
-    <a href="{{URL::to('concept/site')}}">Site</a>
+    <a href="{{URL::to('mod/browse')}}">Browse Mods</a>
 </li>
 @stop
 
@@ -23,9 +20,6 @@
 <div class="row">
     <div class="col-md-3">
         <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">Navigation Sidebar</h3>
-            </div>
             <div class="panel-body">
                 <div class="input-group">
                     <span class="input-group-addon">
@@ -56,16 +50,18 @@
             </div>
             <div class="panel-body">
                 <ul class="media-list">
+                @foreach ($mods as $mod)
                     <li class="media">
                         <a class="pull-left" href="#">
                             <img class="media-object" src="http://placehold.it/100x100">
                         </a>
                         <div class="media-body">
-                            <a href="{{URL::to('concept/site')}}"><h4 class="media-heading">Random Mod</h4></a>
-                            <p>Some Descriptional stuff maybe a little bit more then this, I hope the useres won't be as lazy as I am :)</p>
-                            <small class="pull-right">King Lemming</small>
+                            <a href="{{URL::to("mod/view")."/".$mod["id"]}}"><h4 class="media-heading">{{$mod["name"]}}</h4></a>
+                            <p>{{$mod["description"]}}</p>
+                            <small class="pull-right">{{$mod['author']}}</small>
                         </div>
                     </li>
+                @endforeach
                     <li class="media">
                         <a class="pull-left" href="#">
                             <img class="media-object" src="http://placehold.it/100x100">

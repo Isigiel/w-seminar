@@ -4,17 +4,19 @@ class ConceptController extends BaseController
 {
     public function getLayout ()
     {
-        return View::make('concept.base.layout');
+        return View::make('base.layout');
     }
     
     public function getModsub ()
     {
-        return View::make('concept.ModSubmission');
+        Alert::add("warning","DEBUG || ConceptController was used!");
+        return Redirect::to("mod/new");
     }
     
     public function getBrowse ()
     {
-        return View::make('concept.browse');
+        Alert::add("warning","DEBUG || ConceptController was used!");
+        return Redirect::to("mod/browse");
     }
     
     public function getSite ()
@@ -34,7 +36,8 @@ class ConceptController extends BaseController
     
     public function getRegister ()
     {
-        return View::make('concept.register');
+        Alert::add("warning","DEBUG || ConceptController was used!");
+        return Redirect::to("register");
     }
     
     public function getBlog ()

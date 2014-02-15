@@ -12,10 +12,7 @@
     <a href="{{URL::to('concept/modsub')}}">Mod Submission</a>
 </li>
 <li>
-    <a href="{{URL::to('concept/browse')}}">Browse Mods</a>
-</li>
-<li>
-    <a href="{{URL::to('concept/site')}}">Site</a>
+    <a href="{{URL::to('mod/browse')}}">Browse Mods</a>
 </li>
 <li class="active">
     <a href="{{URL::to('concept/register')}}">Register</a>

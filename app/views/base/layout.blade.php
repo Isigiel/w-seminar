@@ -22,7 +22,7 @@
                         <span class="icon-bar"></span>
                     </button>
                     <a class="navbar-brand" href="{{URL::to('concept/layout')}}">Synopsis
-                        <span class="label label-danger">Conceptual Design Prewiev</span>
+                        <span class="label label-danger">Alpha Prewiev</span>
                     </a>
                 </div>
 
@@ -34,18 +34,33 @@
                             <a href="{{URL::to('concept/layout')}}">Home</a>
                         </li>
                         <li>
-                            <a href="{{URL::to('concept/modsub')}}">Mod Submission</a>
+                            <a href="{{URL::to('mod/new')}}">Mod Submission</a>
                         </li>
                         <li>
-                            <a href="{{URL::to('concept/browse')}}">Browse Mods</a>
-                        </li>
-                        <li>
-                            <a href="{{URL::to('concept/site')}}">Site</a>
+                            <a href="{{URL::to('mod/browse')}}">Browse Mods</a>
                         </li>
                         @show
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                     
+                    @if(Sentry::check())
+                    <?php
+                        $user = Sentry::getUser();
+                    ?>
+                    <li class="dropdown">
+                        <a data-toggle="dropdown" href="#">{{$user["username"]}}&nbsp;</a>
+                        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                            <li>
+                                <a href="{{URL::to('logout')}}">Logout</a>
+                            </li>
+                            <li>
+                                <a href="#">Overwiev</a>
+                            </li>
+                        </ul>
+                    </li>
+                    
+                    @else
+                        
                     <li class="dropdown">
                             <a data-toggle="dropdown" href="#">Login&nbsp;</a>
                             <div class="dropdown-menu" role="menu" aria-labelledby="dLabel">
@@ -53,18 +68,18 @@
                             <div class="col-md-10 col-md-offset-1">
                             <br>
                             <br>
-                            <form role="form">
+                            <form role="form" method="post" action="{{URL::to('login')}}" >
                                 <div class="row">
                                 <div class="col-md-11">
                                 <div class="form-group">
-                                    <input type="email" class="form-control" placeholder="Enter email">
+                                    <input type="email" name="email" class="form-control" placeholder="Enter email">
                                 </div>
                                 </div>
                                 </div>
                                 <div class="row">
                                 <div class="col-md-11">
                                 <div class="form-group">
-                                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                                    <input type="password" name="password" class="form-control" placeholder="Password">
                                 </div>
                                 </div>
                                 </div>
@@ -76,7 +91,7 @@
                                 </div>
                                 <div class="row">
                                 <div class="col-md-11">
-                                    <a href="{{URL::to('concept/register')}}" type="submit" class="btn btn-block btn-sm btn-primary">Register</a>
+                                    <a href="{{URL::to('register')}}" type="submit" class="btn btn-block btn-sm btn-primary">Register</a>
                                     <br>
                                 </div>
                                 </div>
@@ -86,6 +101,7 @@
                             </div>
                             </div>
                     </li>
+                    @endif
                     <li>t</li>
                     <li>t</li>
                     </ul>
@@ -95,7 +111,7 @@
             <div class="col-md-12">
             <div class="alert alert-danger">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                <strong>Warning!</strong>&nbsp;All sites for design testing purposes only! No functionality just now!!
+                <strong>Warning!</strong>&nbsp;Website is in early alpha, expect bugs everywhere :-O
             </div>
             </div>
             {{Alert::render()}}

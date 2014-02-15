@@ -2,6 +2,18 @@
 
 class RegisterController extends BaseController 
 {
+    
+    public function getIndex()
+    {
+        if (Sentry::check())
+        {
+            Alert::add("warning","You are already logged in!");
+            return Redirect::to("concept/layout");
+        } else {
+            return View::make("register");
+        }
+    }
+    
     public function postSubmit ()
     {
         $data           = Input::all();
@@ -23,7 +35,7 @@ class RegisterController extends BaseController
             {
                 Alert::add("danger",$message);
             }
-            return Redirect::to("concept/register");
+            return Redirect::to("register");
         }
         
         

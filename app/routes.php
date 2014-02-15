@@ -14,24 +14,15 @@
 Route::get('logout', function() {
  // logout from the system
     Sentry::logout();
-    return Redirect::to('/');
+    Alert::add("success","You're logged out now.");
+    return Redirect::to('concept/layout');
 });
 
 Route::controller('mod','ModController');
 Route::controller('config','ConfigController');
 Route::controller('register','RegisterController');
 Route::controller('concept','ConceptController');
-
-Route::get('test', function()
-{
-    $test="hero";
-    return View::make('test')->with("test",$test);
-});
-
-Route::get('/', function()
-{
-	return View::make('hello');
-});
+Route::controller('','IndexController');
 
 //Route::controller('/','IndexController');
 
