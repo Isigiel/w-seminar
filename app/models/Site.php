@@ -10,4 +10,9 @@
         {
             return $this->hasMany("Blogentry");
         }
+        
+        public function authors()
+	{
+	    return $this->belongsToMany('User', 'siteAuthors');
+	}
     }

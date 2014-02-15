@@ -35,11 +35,13 @@ App::after(function($request, $response)
 
 Route::filter('auth', function()
 {
-	if (! Sentry::check())
+    
+	if (!Sentry::check())
 	{
 	    Alert::add("danger","You must be logged in to perform this action!");
+	    return Redirect::guest('concept/layout');
 	}
-	return Redirect::guest('concept/layout');
+	
 });
 
 
@@ -61,7 +63,7 @@ Route::filter('auth.basic', function()
 
 Route::filter('guest', function()
 {
-	if (Auth::check()) return Redirect::to('/');
+	if (Sentry::check()) return Redirect::to('/');
 });
 
 /*

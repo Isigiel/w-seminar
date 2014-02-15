@@ -55,9 +55,9 @@ class ModController extends BaseController
             $mod->tags = $data["tags"];
             $mod->save();
             $user = Sentry::getUser();
-            DB::table('user_mods')->insert(
-                array('user_id' => $user["id"], 'mod_id' => $mod["id"])
-            );
+            
+            $mod->authors()->attach($user["id"]);
+            
             Alert::add("success","Your mod was added!");
             return Redirect::to("mod/browse");
         }
