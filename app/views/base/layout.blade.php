@@ -54,7 +54,7 @@
                                 <a href="{{URL::to('logout')}}">Logout</a>
                             </li>
                             <li>
-                                <a href="#">Overwiev</a>
+                                <a href="{{URL::to('cp')}}">Overwiev</a>
                             </li>
                         </ul>
                     </li>

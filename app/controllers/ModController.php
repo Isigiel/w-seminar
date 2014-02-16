@@ -69,7 +69,7 @@ class ModController extends BaseController
         
         try
         {
-            $site = Site::where("mod-id","=",$id)->firstOrFail();
+            $site = Site::where("mod_id","=",$id)->firstOrFail();
         }
         catch (Illuminate\Database\Eloquent\ModelNotFoundException $e)
         {
@@ -77,6 +77,51 @@ class ModController extends BaseController
         }
         
         return View::make("site")->with(array("mod"=>$mod,"site"=>$site));
+    }
+    
+    public function getModify ($id)
+    {
+        $mod=Mod::find($id);
+        return View::make("modModify")->with("mod",$mod);
+    }
+    
+    public function postModify ($id)
+    {
+        $data = Input::all();
+        $rules["name"] = "required";
+        $rules["authors"] = "required";
+        $rules["description"] = "required";
+        $rules["category"] = "required";
+        $rules["tags"] = "required";
+        
+        $messages = array(
+            'tags.required' => 'We strongly recommend using tags for better search-results!',
+        );
+        
+        
+        $validator = Validator::make($data,$rules,$messages);
+        
+        
+        if ($validator->fails())
+        {
+            $messages = $validator->messages()->all();
+            foreach ($messages as $message)
+            {
+                Alert::add("danger",$message);
+            }
+            return Redirect::to("mod/new");
+        } else {
+            $mod = Mod::find($id);
+            $mod->name = $data["name"];
+            $mod->author = $data["authors"];
+            $mod->description = $data["description"];
+            $mod->category = $data["category"];
+            $mod->tags = $data["tags"];
+            $mod->save();
+            
+            Alert::add("success","Your mod was added!");
+            return Redirect::to("mod/browse");
+        }
     }
     
 }

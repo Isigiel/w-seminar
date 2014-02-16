@@ -26,23 +26,18 @@
     <div class="col-md-12">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h2 class="panel-title">{{$site["title"]}}</h2>
+                <h2 class="panel-title">Create a Site representing your mod!</h2>
             </div>
             <div class="panel-body">
-                <div class="site-render">
-                </div>
+            <form method="post" action="{{URL::to('site/modify')."/".$site['id']}}">
+            <input type="text" name="title" class="form-control" value="{{$site["title"]}}" placeholder="Enter your Sites title">
+            <br>
+                <textarea name="content" data-uk-markdownarea="{mode:'split'}">{{$site["content"]}}</textarea>
+                <br>
+                <button type="submit" class="btn btn-success btn-lg btn-block">Save Changes</button>
             </div>
         </div>
     </div>
 </div>
-
-<script>
-    $(document).ready(function(){
-        var value = {{json_encode($site['content'])}};
-        $( "div.site-render" )
-            .html(marked(value))
-    });
-</script>
-
 
 @stop

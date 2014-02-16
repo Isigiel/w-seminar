@@ -22,6 +22,7 @@ Route::controller('mod','ModController');
 Route::controller('config','ConfigController');
 Route::controller('register','RegisterController');
 Route::controller('concept','ConceptController');
+Route::controller('site','SiteController');
 Route::controller('','IndexController');
 
 //Route::controller('/','IndexController');

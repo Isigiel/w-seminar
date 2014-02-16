@@ -1,4 +1,4 @@
-@extends('concept.base.layout')
+@extends('base.layout')
 
 @section('head')
 <title>{{$mod["name"]}}</title>
