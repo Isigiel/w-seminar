@@ -23,7 +23,7 @@ class RegisterController extends BaseController
         $rules["name"] = "required";
         $rules["fname"] = "required";
         $rules["password"] = "required|min:6|confirmed";
-        $rules["email"] = "required|email";
+        $rules["email"] = "required|email|unique:users";
         $rules["username"] = "required|unique:users";
         
         

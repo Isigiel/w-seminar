@@ -13,12 +13,12 @@ class ModController extends BaseController
     public function getBrowse ()
     {
         $mods = Mod::all();
-        return View::make("browse")->with("mods",$mods);
+        return View::make("mod.browse")->with("mods",$mods);
     }
     
     public function getNew ()
     {
-        return View::make("modSubmission");
+        return View::make("mod.new");
     }
     
     public function postNew ()
@@ -45,7 +45,8 @@ class ModController extends BaseController
             {
                 Alert::add("danger",$message);
             }
-            return Redirect::to("mod/new");
+            $messages = $validator->messages();
+            return Redirect::to("mod/error")->with(array("data"=>$data, "messages"=>$messages, "modify"=>false));
         } else {
             $mod = new Mod;
             $mod->name = $data["name"];
@@ -73,16 +74,16 @@ class ModController extends BaseController
         }
         catch (Illuminate\Database\Eloquent\ModelNotFoundException $e)
         {
-            return View::make("noSite")->with("mod",$mod);
+            return View::make("site.missing")->with("mod",$mod);
         }
         
-        return View::make("site")->with(array("mod"=>$mod,"site"=>$site));
+        return View::make("site.view")->with(array("mod"=>$mod,"site"=>$site));
     }
     
     public function getModify ($id)
     {
         $mod=Mod::find($id);
-        return View::make("modModify")->with("mod",$mod);
+        return View::make("mod.modify")->with("mod",$mod);
     }
     
     public function postModify ($id)
@@ -109,7 +110,9 @@ class ModController extends BaseController
             {
                 Alert::add("danger",$message);
             }
-            return Redirect::to("mod/new");
+            
+            $messages = $validator->messages();
+            return Redirect::to("mod/error/modify")->with(array("data"=>$data, "messages"=>$messages, "modify"=>true, "id"=>$id));
         } else {
             $mod = Mod::find($id);
             $mod->name = $data["name"];
@@ -119,9 +122,22 @@ class ModController extends BaseController
             $mod->tags = $data["tags"];
             $mod->save();
             
-            Alert::add("success","Your mod was added!");
+            Alert::add("success","Your mod was updated!");
             return Redirect::to("mod/browse");
         }
+    }
+    
+    
+    
+    
+    public function getError ()
+    {
+    	
+    	
+    	
+    	//return var_dump(Session::all());
+    	return View::make("mod.error")->with(Session::all());
+    	
     }
     
 }

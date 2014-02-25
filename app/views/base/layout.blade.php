@@ -1,4 +1,4 @@
-@extends('concept.base.view')
+@extends('base.view')
 
 @section('head')
     @section('head')

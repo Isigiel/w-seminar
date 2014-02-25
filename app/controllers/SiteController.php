@@ -12,7 +12,7 @@ class SiteController extends BaseController
     public function getNew ($id)
     {
         $mod = Mod::find($id);
-        return View::make("newSite")->with("mod",$mod);
+        return View::make("site.new")->with("mod",$mod);
     }
     
     public function postNew ($id)
@@ -48,7 +48,7 @@ class SiteController extends BaseController
     {
         $site=Site::find($id);
         $mod=Mod::find($site["mod_id"]);
-        return View::make("modifySite")->with(array("site"=>$site,"mod"=>$mod));
+        return View::make("site.modify")->with(array("site"=>$site,"mod"=>$mod));
     }
     
     public function postModify ($id)
