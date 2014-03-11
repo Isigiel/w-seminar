@@ -65,27 +65,39 @@ class IndexController extends BaseController
     
     public function getCp ()
     {
-        $user = User::find(Sentry::getUser()["id"]);
+        $user = Sentry::getUser()["id"];
         
-        $mods = $user->mods->toArray();
-        $sites = $user->sites->toArray();
         
+
+        
+        //$mods = $user->mods->toArray();
+        //$sites = $user->sites->toArray();
+        
+        $mods=DB::select("	SELECT *
+         					FROM modAuthors a, mods m 
+         					WHERE a.user_id = ?
+         					AND a.mod_id = m.id", array($user));
+        
+        $sites=DB::select("	SELECT *
+         					FROM siteAuthors a, sites m 
+         					WHERE a.user_id = ?
+         					AND a.site_id = m.id", array($user));
+        
+        $res=array();
         if (count($mods) !== 0)
         {
-            $m =0;
+
             
-            foreach ($mods as $mod)
+            foreach ($mods as $m=>$mod)
             {
-                if (Site::where("mod_id",$mod["id"])->exists())
+                if (Site::where("mod_id",$mod->id)->exists())
                 {
-                    $res[$m]=$mod;
-                    $res[$m]["site"]=true;
+                    $mods[$m]->site=true;
                 } else {
-                    $res[$m]=$mod;
-                    $res[$m]["site"]=false;
+                    $mods[$m]->site=false;
                 }
             }
-            $mods = $res;
+
         
         } else {
             $mods=false;

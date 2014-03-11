@@ -15,7 +15,7 @@
     <a href="{{URL::to('mod/browse')}}">Browse Mods</a>
 </li>
 <li class="active">
-    <a href="#">Control Panel</a>
+    <a>Control Panel</a>
 </li>
 @stop
 
@@ -32,10 +32,10 @@
             @foreach ($sites as $site)
                 <div class="row">
                     <div class="col-md-8">
-                        <h4>{{$site["title"]}}</h4>
+                        <h4>{{$site->title}}</h4>
                     </div>
-                    <div class="col-md-2">
-                        <a href="{{URL::to('site/modify')."/".$site['id']}}" class="btn btn-warning btn-sm">modify site</a>
+                    <div class="col-md-3 pull-right">
+                        <a href="{{URL::to('site/modify')."/".$site->id}}" class="btn btn-warning btn-sm">modify site</a>
                     </div>
                 </div>
             @endforeach
@@ -57,14 +57,14 @@
                 @foreach ($mods as $mod)
                 <div class="row">
                     <div class="col-md-6">
-                        <h4>{{$mod["name"]}}</h4>
+                        <h4>{{$mod->name}}</h4>
                     </div>
-                    <div class="col-md-3">
-                        <a href="{{URL::to('mod/modify')."/".$mod['id']}}" class="btn btn-warning btn-sm">modify mod</a>
+                    <div class="col-md-3 pull-right">
+                        <a href="{{URL::to('mod/modify')."/".$mod->id}}" class="btn btn-warning btn-sm">modify mod</a>
                     </div>
-                    @if (!$mod["site"])
-                    <div class="col-md-3">
-                        <a href="{{URL::to('site/new')."/".$mod['id']}}" class="btn btn-success btn-sm">create site</a>
+                    @if (!$mod->site)
+                    <div class="col-md-3 pull-right">
+                        <a href="{{URL::to('site/new')."/".$mod->id}}" class="btn btn-success btn-sm">create site</a>
                     </div>
                     @endif
                 </div>
@@ -76,4 +76,6 @@
         </div>
     </div>
 </div>
+<hr>
+
 @stop
