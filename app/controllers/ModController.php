@@ -24,44 +24,11 @@ class ModController extends BaseController
     public function postNew ()
     {
         $data = Input::all();
-        $rules["name"] = "required";
-        $rules["authors"] = "required";
-        $rules["description"] = "required";
-        $rules["category"] = "required";
-        $rules["tags"] = "required";
         
-        $messages = array(
-            'tags.required' => 'We strongly recommend using tags for better search-results!',
-        );
-        
-        
-        $validator = Validator::make($data,$rules,$messages);
-        
-        
-        if ($validator->fails())
-        {
-            $messages = $validator->messages()->all();
-            foreach ($messages as $message)
-            {
-                Alert::add("danger",$message);
-            }
-            $messages = $validator->messages();
-            return Redirect::to("mod/error")->with(array("data"=>$data, "messages"=>$messages, "modify"=>false));
-        } else {
-            $mod = new Mod;
-            $mod->name = $data["name"];
-            $mod->author = $data["authors"];
-            $mod->description = $data["description"];
-            $mod->category = $data["category"];
-            $mod->tags = $data["tags"];
-            $mod->save();
-            $user = Sentry::getUser();
-            
-            $mod->authors()->attach($user["id"]);
-            
-            Alert::add("success","Your mod was added!");
+        if(!$res=$this->updateMod($data))
             return Redirect::to("mod/browse");
-        }
+        else
+            return View::make("mod.modify")->with($res);
     }
     
     public function getView ($id)
@@ -83,12 +50,23 @@ class ModController extends BaseController
     public function getModify ($id)
     {
         $mod=Mod::find($id);
-        return View::make("mod.modify")->with("mod",$mod);
+        $versions=$mod->versions;
+        return View::make("mod.modify")->with(array("mod"=>$mod,"error"=>false));
     }
     
     public function postModify ($id)
     {
         $data = Input::all();
+        
+        if(!$res=$this->updateMod($data,$id))
+            return Redirect::to("mod/browse");
+        else
+            return View::make("mod.modify")->with($res);
+    }
+    
+    public function updateMod($data, $id=false)
+    {
+        //Validate Inputs
         $rules["name"] = "required";
         $rules["authors"] = "required";
         $rules["description"] = "required";
@@ -99,45 +77,36 @@ class ModController extends BaseController
             'tags.required' => 'We strongly recommend using tags for better search-results!',
         );
         
-        
         $validator = Validator::make($data,$rules,$messages);
         
-        
+        //handle Validation result
         if ($validator->fails())
         {
-            $messages = $validator->messages()->all();
-            foreach ($messages as $message)
-            {
-                Alert::add("danger",$message);
-            }
-            
             $messages = $validator->messages();
-            return Redirect::to("mod/error/modify")->with(array("data"=>$data, "messages"=>$messages, "modify"=>true, "id"=>$id));
+            return array("data"=>$data, "messages"=>$messages, "modify"=>true, "id"=>$id, "error"=>true);
         } else {
-            $mod = Mod::find($id);
-            $mod->name = $data["name"];
-            $mod->author = $data["authors"];
-            $mod->description = $data["description"];
-            $mod->category = $data["category"];
-            $mod->tags = $data["tags"];
-            $mod->save();
+            if ($id)
+                $mod = Mod::find($id);
+            else
+                $mod = new Mod;
             
-            Alert::add("success","Your mod was updated!");
-            return Redirect::to("mod/browse");
+                $mod->name = $data["name"];
+                $mod->author = $data["authors"];
+                $mod->description = $data["description"];
+                $mod->category = $data["category"];
+                $mod->tags = $data["tags"];
+            
+                $mod->save;
+            
+                if($id)
+                    Alert::add("success","Your mod was updated!");
+                else
+                    Alert::add("success","Your mod was created!");
+                
+                return false;
         }
-    }
-    
-    
-    
-    
-    public function getError ()
-    {
-    	
-    	
-    	
-    	//return var_dump(Session::all());
-    	return View::make("mod.error")->with(Session::all());
-    	
-    }
+        
+        
+    }  
     
 }

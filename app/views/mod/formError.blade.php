@@ -1,39 +1,4 @@
-@extends('base.layout')
 
-@section('head')
-<title>Modify "{{$data["name"]}}"</title>
-@stop
-
-@section('nav')
-<li>
-    <a href="{{URL::to('concept/layout')}}">Home</a>
-</li>
-<li>
-    <a href="{{URL::to('mod/new')}}">Mod Submission</a>
-</li>
-<li>
-    <a href="{{URL::to('mod/browse')}}">Browse Mods</a>
-</li>
-@if($data["name"])
-<li class="active">
-    <a href="#">
-    
-    {{$data["name"]}}
-    
-    </a>
-</li>
-@endif
-@stop
-
-@section('content')
-<h1>{{$data["name"]}}<small> by {{$data["authors"]}}</small></h1>
-<div class="row">
-    <div class="col-md-12">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">Modify your Mod</h3>
-            </div>
-            <div class="panel-body">
                 <form role="form" method="post" action="
                 @if ($modify)
                 {{URL::to('mod/modify')."/".$id}}
@@ -112,9 +77,3 @@
                             <button type="submit" class="btn btn-success btn-lg btn-block">Submit chnages</button>
                         </div>
                     </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-@stop

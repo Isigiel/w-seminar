@@ -8,9 +8,6 @@
 <li>
     <a href="{{URL::to('concept/layout')}}">Home</a>
 </li>
-<li>
-    <a href="{{URL::to('mod/new')}}">Mod Submission</a>
-</li>
 <li class="active">
     <a href="{{URL::to('mod/browse')}}">Browse Mods</a>
 </li>
