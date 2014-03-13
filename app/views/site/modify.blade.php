@@ -9,10 +9,10 @@
     <a href="{{URL::to('concept/layout')}}">Home</a>
 </li>
 <li>
-    <a href="{{URL::to('mod/new')}}">Mod Submission</a>
+    <a href="{{URL::to('mod/browse')}}">Browse Mods</a>
 </li>
 <li>
-    <a href="{{URL::to('mod/browse')}}">Browse Mods</a>
+    <a href="{{URL::to('cp')}}">Control Panel</a>
 </li>
 <li class="active">
     <a href="#">{{$mod["name"]}}</a>
@@ -32,7 +32,7 @@
             <form method="post" action="{{URL::to('site/modify')."/".$site['id']}}">
             <input type="text" name="title" class="form-control" value="{{$site["title"]}}" placeholder="Enter your Sites title">
             <br>
-                <textarea name="content" data-uk-markdownarea="{mode:'split'}">{{$site["content"]}}</textarea>
+                <textarea name="content" data-uk-markdownarea="{mode:'split'}"> @if ($modify){{$content}}@else{{$site["content"]}}@endif</textarea>
                 <br>
                 <button type="submit" class="btn btn-success btn-lg btn-block">Save Changes</button>
             </div>

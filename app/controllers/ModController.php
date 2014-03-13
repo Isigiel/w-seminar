@@ -83,6 +83,7 @@ class ModController extends BaseController
     public function getModify ($id)
     {
         $mod=Mod::find($id);
+        $versions=$mod->versions;
         return View::make("mod.modify")->with("mod",$mod);
     }
     

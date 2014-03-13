@@ -48,7 +48,13 @@ class SiteController extends BaseController
     {
         $site=Site::find($id);
         $mod=Mod::find($site["mod_id"]);
-        return View::make("site.modify")->with(array("site"=>$site,"mod"=>$mod));
+        if (Session::has("content"))
+        {
+            $content = Session::get("content");
+            return View::make("site.modify")->with(array("modify"=>true,"site"=>$site,"content"=>$content,"mod"=>$mod));
+        } else {
+            return View::make("site.modify")->with(array("modify"=>false,"site"=>$site,"mod"=>$mod));
+        }
     }
     
     public function postModify ($id)
@@ -67,6 +73,7 @@ class SiteController extends BaseController
             {
                 Alert::add("danger",$message);
             }
+            Session::put("content",$data["content"]);
             return Redirect::to("site/modify"."/".$id);
         } else {
             $site = Site::find($id);

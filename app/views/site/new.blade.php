@@ -9,14 +9,12 @@
     <a href="{{URL::to('concept/layout')}}">Home</a>
 </li>
 <li>
-    <a href="{{URL::to('mod/new')}}">Mod Submission</a>
-</li>
-<li>
     <a href="{{URL::to('mod/browse')}}">Browse Mods</a>
 </li>
 <li class="active">
     <a href="#">{{$mod["name"]}}</a>
 </li>
+
 @stop
 
 @section('content')
