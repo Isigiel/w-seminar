@@ -64,7 +64,8 @@ class ModController extends BaseController
             return View::make("mod.modify")->with($res);
     }
     
-    public function updateMod($data, $id=false)
+    
+    private function updateMod($data, $id=false)
     {
         //Validate Inputs
         $rules["name"] = "required";
