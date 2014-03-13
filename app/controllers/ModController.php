@@ -51,7 +51,7 @@ class ModController extends BaseController
     {
         $mod=Mod::find($id);
         $versions=$mod->versions;
-        return View::make("mod.modify")->with(array("mod"=>$mod,"error"=>false));
+        return View::make("mod.modify")->with(array("mod"=>$mod,"error"=>false, "versions"=>$versions));
     }
     
     public function postModify ($id)
