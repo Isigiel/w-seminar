@@ -13,8 +13,8 @@
         @foreach($versions as $version)
         <tr>
             <td>{{$version["version"]}}</td>
-            <td>{{$version["mc-version"]}}</td>
-            <td>{{$version["link"]}}</td>
+            <td>{{$version["mc_version"]}}</td>
+            <td><a href="{{$version["link"]}}">{{$version["link"]}}</a></td>
             <td>{{$version["stability"]}}</td>
             <td>{{$version["downloads"]}}</td>
             <td>
@@ -22,13 +22,13 @@
             </td>
         </tr>
         @endforeach
-        <form >
+         <form enctype="multipart/form-data" role="form" method="post" action="{{URL::to("mod/add-version/$mod[id]")}}">
             <tr>
                 <td>
                     <input type="text" name="version" class="form-control" placeholder="Enter the Version(number)">
                 </td>
                 <td>
-                    <select name="mc-version" class="form-control">
+                    <select name="mc_version" class="form-control">
                         <option value="1.2.5">1.2.5</option>
                         <option value="1.4.7">1.4.7</option>
                         <option value="1.5.2">1.5.2</option>
@@ -37,10 +37,7 @@
                     </select>
                 </td>
                 <td>
-                    <div class="uk-form-file">
-                        <button class="btn btn-success btn-sm">Choose File</button>
-                        <input name="file" type="file">
-                    </div>
+                        <input type="file" name="file" id="file">
                 </td>
                 <td>
                     <select name="stability" class="form-control">
@@ -52,6 +49,7 @@
                     </select>
                 </td>
                 <td>0</td>
+                <td><button type="submit" class="btn btn-success btn-sm">Upload Version</button></td>
             </tr>
         </form>
     </tbody>

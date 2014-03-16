@@ -51,7 +51,36 @@ class ModController extends BaseController
     {
         $mod=Mod::find($id);
         $versions=$mod->versions;
+        
+        foreach ($versions as $i=>$version)
+        {
+        	$id=$version["id"];
+        	$versions[$i]["link"]=URL::to("mod/download/$id");
+        }
+        
         return View::make("mod.modify")->with(array("mod"=>$mod,"error"=>false, "versions"=>$versions));
+    }
+    
+    public function getDownload ($id)
+    {
+    	$version=Modversion::find($id);
+    	
+    	$name=$version->mod["name"]."_".$version["mc_version"]."_".$version["version"].".".$version["type"];
+    	$path=$version["path"];
+    	
+    	return Response::download($path, $name);
+    }
+    
+    public function getDeleteVersion ($id)
+    {
+    	$version=Modversion::find($id);
+    	$mod_id=$version->mod["id"];
+    	$version_number=$version["version"];
+    	Modversion::destroy($id);
+    	
+    	Alert::add("success","Version $version_number was deleted.");
+    	
+    	return Redirect::to("mod/modify/$mod_id");
     }
     
     public function postModify ($id)
@@ -64,7 +93,66 @@ class ModController extends BaseController
             return View::make("mod.modify")->with($res);
     }
     
+    public function postAddVersion ($id)
+    {
+    	//$file=$_POST["file"];
+    	$format=Input::file('file')->getMimeType();
+    	if ($format != "application/jar" && $format != "application/zip")
+    	{
+    		Alert::add("danger","File-Format $format not accepted.");
+    		return Redirect::to("mod/modify/$id");
+    	}
+    	
+    	$data=Input::all();
+    	
+    	//Validate Inputs
+        $rules["version"] = "required";
+        $rules["mc_version"] = "required";
+        $rules["stability"] = "required";
+        
+        $validator = Validator::make($data,$rules);
+        
+        //handle Validation result
+        if ($validator->fails())
+        {
+            $messages = $validator->messages()->all();
+            foreach ($messages as $message)
+            {
+            	Alert::add("danger",$message);
+            }
+            Alert::add("danger", "Form problem!");
+            return Redirect::to("mod/modify/$id");
+        }
+        
+        if ($format == "application/jar")
+        	$type="jar";
+        else
+        	$type="zip";
+    	
+    	$path=public_path()."/repo/mods/";
+    	$hash=md5(Input::file('file')->getClientOriginalName());
+    	$number=Input::get("version");
+    	
+    	$version = new Modversion;
+    	$version->mod_id=$id;
+    	$version->version=Input::get("version");
+    	$version->mc_version=Input::get("mc_version");
+    	$version->stability=Input::get("stability");
+    	$version->path=$path.$hash;
+    	$version->downloads=0;
+    	$version->type=$type;
+    	$version->save();
+    	
+    	Input::file('file')->move(public_path()."/repo/mods/", $hash);
+    	Alert::add("success","Version $number was added.");
+    	
+    	return Redirect::to("mod/modify/$id");
+    	//return Response::json(array("files"=>$_FILES,"post"=>$_POST,"true-photo"=>Input::hasFile('photo'),"true-file"=>Input::hasFile('file')));
+    }
     
+    ////////////////////////////////////////////////////////////////////////
+    //////////////////////internal Functions////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////
     private function updateMod($data, $id=false)
     {
         //Validate Inputs

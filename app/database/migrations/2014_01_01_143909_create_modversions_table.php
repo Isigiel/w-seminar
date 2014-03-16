@@ -18,9 +18,10 @@ class CreateModversionsTable extends Migration {
 			$table->timestamps();
 			$table->string('mod_id');
 			$table->string('version');
-			$table->string('mc-version');
-			$table->string('stablility');
+			$table->string('mc_version');
+			$table->string('stability');
 			$table->string('path');
+			$table->string('type');
 			$table->integer('downloads');
 		});
 	}
