@@ -13,6 +13,6 @@
         
         public function mod()
         {
-            return $this->belogsTo('Mod');
+            return $this->belongsTo('Mod');
         }
     }

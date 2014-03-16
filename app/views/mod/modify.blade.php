@@ -29,7 +29,7 @@
         <a href="#home" data-toggle="tab">Home</a>
     </li>
     <li>
-        <a href="#profile" data-toggle="tab">Versions</a>
+        <a href="#versions" data-toggle="tab">Versions</a>
     </li>
 </ul>
 <div class="tab-content">
@@ -50,5 +50,21 @@
             </div>
         </div>
     </div>
+    <div class="tab-pane fade" id="versions">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <h3 class="panel-title">Manage Versions</h3>
+                        <hr>
+                        @include('mod.versions')
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+    
+
 @stop
