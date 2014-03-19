@@ -44,6 +44,27 @@ Route::filter('auth', function()
 	
 });
 
+Route::filter('author', function()
+{
+    $mid = Request::segment(3);
+    $mod=Mod::find($mid);
+    $uid = Sentry::getUser()["id"];
+    $owner=false;
+    $authors = $mod->authors;
+    
+    foreach ($authors as $author)
+    {
+        if ($author["id"] == $uid)
+            $owner=true;
+    }
+    
+    if (!$owner)
+    {
+        Alert::add("danger","You are not allowed to edit this mod!");
+	    return Redirect::guest('mod/browse');
+    }
+});
+
 
 Route::filter('auth.basic', function()
 {

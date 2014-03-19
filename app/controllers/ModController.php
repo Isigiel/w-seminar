@@ -7,6 +7,7 @@ class ModController extends BaseController
     public function __construct()
     {
         $this->beforeFilter('auth', array('except' => array('getBrowse','getView','getDownload')));
+        $this->beforeFilter('author', array('only' => array('getModify','postModify')));
     }
     
     
