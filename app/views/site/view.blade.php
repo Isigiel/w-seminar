@@ -9,13 +9,10 @@
     <a href="{{URL::to('concept/layout')}}">Home</a>
 </li>
 <li>
-    <a href="{{URL::to('mod/new')}}">Mod Submission</a>
-</li>
-<li>
     <a href="{{URL::to('mod/browse')}}">Browse Mods</a>
 </li>
 <li class="active">
-    <a href="#">{{$mod["name"]}}</a>
+    <a>{{$mod["name"]}}</a>
 </li>
 @stop
 
@@ -33,6 +30,39 @@
                 </div>
             </div>
         </div>
+        @if($versions)
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h2 class="panel-title">Modversions</h2>
+            </div>
+            <div class="panel-body">
+                <table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Version</th>
+            <th>Minecraft-Version</th>
+            <th>Stability</th>
+            <th>Downloads</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach($versions as $version)
+        <tr class="{{Get::sclass($version["stability"])}}">
+            <td>{{$version["version"]}}</td>
+            <td>{{$version["mc_version"]}}</td>
+            <td>{{Get::stability($version["stability"])}}</td>
+            <td>{{$version["downloads"]}}</td>
+            <td>
+                <a class="btn btn-success btn-xs" href="{{$version["link"]}}">Download</a>
+            </td>
+        </tr>
+        @endforeach
+        </tbody>
+        </table>
+            </div>
+        </div>
+        @endif
     </div>
 </div>
 

@@ -1,3 +1,5 @@
+
+
 <table class="table table-striped">
     <thead>
         <tr>
@@ -10,6 +12,7 @@
         </tr>
     </thead>
     <tbody>
+    @if($versions)
         @foreach($versions as $version)
         <tr>
             <td>{{$version["version"]}}</td>
@@ -21,7 +24,8 @@
                 <a class="btn btn-danger btn-sm" href="{{URL::to("mod/delete-version/$version[id]")}}">Delete</a>
             </td>
         </tr>
-        @endforeach
+         @endforeach
+         @endif
          <form enctype="multipart/form-data" role="form" method="post" action="{{URL::to("mod/add-version/$mod[id]")}}">
             <tr>
                 <td>
@@ -41,11 +45,10 @@
                 </td>
                 <td>
                     <select name="stability" class="form-control">
-                        <option value="0">Stable</option>
-                        <option value="1">Prewiev</option>
-                        <option value="2">Unstable</option>
-                        <option value="3">Dev-Version</option>
-                        <option value="4">Testing</option>
+                        <option value="0">{{Get::stability(0)}}</option>
+                        <option value="1">{{Get::stability(1)}}</option>
+                        <option value="2">{{Get::stability(2)}}</option>
+                        <option value="3">{{Get::stability(3)}}</option>
                     </select>
                 </td>
                 <td>0</td>

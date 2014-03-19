@@ -48,7 +48,7 @@
 
                             <div class="row">
                                 <div class="col-md-12">
-                                    <button type="submit" class="btn btn-success btn-lg btn-block">Submit chnages</button>
+                                    <button type="submit" class="btn btn-success btn-lg btn-block">Submit changes</button>
                                 </div>
                             </div>
                         </form>

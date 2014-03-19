@@ -6,7 +6,7 @@ class ModController extends BaseController
     //Controller Filters
     public function __construct()
     {
-        $this->beforeFilter('auth', array('except' => array('getBrowse','getView')));
+        $this->beforeFilter('auth', array('except' => array('getBrowse','getView','getDownload')));
     }
     
     
@@ -35,21 +35,37 @@ class ModController extends BaseController
     {
         $mod = Mod::find($id);
         
-        try
-        {
-            $site = Site::where("mod_id","=",$id)->firstOrFail();
-        }
-        catch (Illuminate\Database\Eloquent\ModelNotFoundException $e)
-        {
-            return View::make("site.missing")->with("mod",$mod);
-        }
+        $versions=false;
         
-        return View::make("site.view")->with(array("mod"=>$mod,"site"=>$site));
+        $versions=$mod->versions->toArray();
+        
+        foreach ($versions as $i=>$version)
+        {
+        	$num=$version["id"];
+        	$versions[$i]["link"]=URL::to("mod/download/$num");
+        }
+		
+		//return dd($versions);
+        	
+		if (Site::where("mod_id",$id)->exists())
+            $site = Site::where("mod_id",$id)->first();
+        else
+        	return View::make("site.missing")->with("mod",$mod);
+        	
+        return View::make("site.view")->with(array("mod"=>$mod,"site"=>$site,"versions"=>$versions ));
     }
     
     public function getModify ($id)
     {
+        $standart="##Style your site using markdown! 
+For more information check out:
+ * [Markdown guide](http://daringfireball.net/projects/markdown/syntax)
+ * [Github flavored markdown](https://help.github.com/articles/github-flavored-markdown)";
+        
         $mod=Mod::find($id);
+        $versions=false;
+        $site=false;
+        $site=Site::where("mod_id",$id)->first()["content"];
         $versions=$mod->versions;
         
         foreach ($versions as $i=>$version)
@@ -58,12 +74,14 @@ class ModController extends BaseController
         	$versions[$i]["link"]=URL::to("mod/download/$id");
         }
         
-        return View::make("mod.modify")->with(array("mod"=>$mod,"error"=>false, "versions"=>$versions));
+        return View::make("mod.modify")->with(array("mod"=>$mod,"error"=>false, "versions"=>$versions, "site"=>$site, "standart"=>$standart));
     }
     
     public function getDownload ($id)
     {
     	$version=Modversion::find($id);
+    	$version->downloads=$version->downloads+1;
+    	$version->save();
     	
     	$name=$version->mod["name"]."_".$version["mc_version"]."_".$version["version"].".".$version["type"];
     	$path=$version["path"];
@@ -74,9 +92,13 @@ class ModController extends BaseController
     public function getDeleteVersion ($id)
     {
     	$version=Modversion::find($id);
+    	$path=$version["path"];
     	$mod_id=$version->mod["id"];
     	$version_number=$version["version"];
     	Modversion::destroy($id);
+    	
+    	if(!unlink($path))
+    		Alert::add("danger","Version $version_number was deleted, but file is still existing.");
     	
     	Alert::add("success","Version $version_number was deleted.");
     	
@@ -130,7 +152,7 @@ class ModController extends BaseController
         	$type="zip";
     	
     	$path=public_path()."/repo/mods/";
-    	$hash=md5(Input::file('file')->getClientOriginalName());
+    	$hash=md5(Input::file('file'));
     	$number=Input::get("version");
     	
     	$version = new Modversion;
@@ -147,7 +169,6 @@ class ModController extends BaseController
     	Alert::add("success","Version $number was added.");
     	
     	return Redirect::to("mod/modify/$id");
-    	//return Response::json(array("files"=>$_FILES,"post"=>$_POST,"true-photo"=>Input::hasFile('photo'),"true-file"=>Input::hasFile('file')));
     }
     
     ////////////////////////////////////////////////////////////////////////
