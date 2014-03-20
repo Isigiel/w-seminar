@@ -79,3 +79,25 @@ App::down(function()
 */
 
 require app_path().'/filters.php';
+
+/*
+|--------------------------------------------------------------------------
+| Event listeners
+|--------------------------------------------------------------------------
+|
+|
+*/
+
+Event::listen('follow.update', function($mod)
+{
+    $followers = $mod->followers()->get()->toArray();
+    $mod->followers=count($followers);
+
+    $mod->save();
+});
+
+Event::listen('mod.download', function($mod)
+{
+    $mod->downloads=$mod->downloads+1;
+    $mod->save();
+});

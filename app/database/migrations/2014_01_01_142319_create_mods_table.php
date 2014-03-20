@@ -22,6 +22,7 @@ class CreateModsTable extends Migration {
 		    $table->string('category');
 			$table->text('description');
 			$table->integer('followers');
+			$table->integer('downloads');
 		});
 	}
 

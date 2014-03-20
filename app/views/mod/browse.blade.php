@@ -30,12 +30,11 @@
                 <!-- /input-group -->
                 <hr>
                 <h4>Sort by</h4>
-                Most Likes
-                <br>Most Followers
-                <br>Most recent
-                <br>Most Downloaded
+                <a href="{{URL::to("mod/browse/followers")}}"> Most Followers </a>
+                <br><a href="{{URL::to("mod/browse/updated_at")}}">Last updated </a>
+                <br><a href="{{URL::to("mod/browse/downloads")}}">Most Downloaded </a>
                 <br>Category
-                <br>Newest
+                <br><a href="{{URL::to("mod/browse/created_at")}}">Newest </a>
             </div>
         </div>
     </div>

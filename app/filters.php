@@ -50,13 +50,16 @@ Route::filter('author', function()
     $mod=Mod::find($mid);
     $uid = Sentry::getUser()["id"];
     $owner=false;
+    $authors=false;
     $authors = $mod->authors;
     
+    if ($authors)
+    {
     foreach ($authors as $author)
     {
         if ($author["id"] == $uid)
             $owner=true;
-    }
+    }}
     
     if (!$owner)
     {

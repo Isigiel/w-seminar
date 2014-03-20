@@ -17,14 +17,27 @@
 @stop
 
 @section('content')
-
-<h1>{{$mod["name"]}}<small> by {{$mod["author"]}}</small></h1>
+<div class="row">
+    <div class="col-md-8">
+        <h1>{{$mod["name"]}}<small> by {{$mod["author"]}}</small></h1>
+    </div>
+    <div class="col-md-4">
+    <h1>
+        @if (!$follows)
+            <a class="btn btn-success btn-sm pull-right" href="{{URL::to("mod/follow/$mod[id]")}}"><i class="fa fa-thumbs-up"></i>&nbsp;Follow</a>
+        @elseif($follows==="nl")
+            
+        @else
+            <a class="btn btn-warning btn-sm pull-right" href="{{URL::to("mod/unfollow/$mod[id]")}}"><i class="fa fa-thumbs-down"></i>&nbsp;Unfollow</a>
+        @endif
+        <button class="btn-sm pull-right btn btn-success">{{$mod["followers"]}}&nbsp;<i class="fa fa-thumbs-up"></i></button>
+    </h1>
+    </div>
+</div>
 <div class="row">
     <div class="col-md-12">
         <div class="panel panel-default">
-            <div class="panel-heading">
-                <h2 class="panel-title">{{$site["title"]}}</h2>
-            </div>
+            
             <div class="panel-body">
                 <div class="site-render">
                 </div>

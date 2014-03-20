@@ -11,9 +11,11 @@ class ModController extends BaseController
     }
     
     
-    public function getBrowse ()
+    public function getBrowse ($sort="id", $type="DESC")
     {
-        $mods = Mod::all();
+        //sorting//
+       	$mods = Mod::orderBy($sort, $type)->get();
+        
         return View::make("mod.browse")->with("mods",$mods);
     }
     
@@ -40,6 +42,26 @@ class ModController extends BaseController
         
         $versions=$mod->versions->toArray();
         
+        if (Sentry::check())
+        {
+        	$uid = Sentry::getUser()["id"];
+        	
+        	$follows=false;
+    		$followers = $mod->followers()->get()->toArray();
+    
+    		if($followers)
+    		{
+    			foreach ($followers as $follower)
+    			{
+        			if ($follower["id"] == $uid)
+        		    	$follows=true;
+    			}
+    		}
+        } else {
+        	$follows="nl";
+        }
+        
+        
         foreach ($versions as $i=>$version)
         {
         	$num=$version["id"];
@@ -53,7 +75,25 @@ class ModController extends BaseController
         else
         	return View::make("site.missing")->with("mod",$mod);
         	
-        return View::make("site.view")->with(array("mod"=>$mod,"site"=>$site,"versions"=>$versions ));
+        return View::make("site.view")->with(array("mod"=>$mod,"site"=>$site,"versions"=>$versions, "follows"=>$follows));
+    }
+    
+    public function getFollow ($id)
+    {
+    	$user = User::find(Sentry::getUser()["id"]);
+        $user->follows()->attach($id);
+        $mod=Mod::find($id);
+        $event = Event::fire('follow.update', array($mod));
+        return Redirect::to("mod/view/$id");
+    }
+    
+    public function getUnfollow ($id)
+    {
+    	$user = User::find(Sentry::getUser()["id"]);
+        $user->follows()->detach($id);
+        $mod=Mod::find($id);
+        $event = Event::fire('follow.update', array($mod));
+        return Redirect::to("mod/view/$id");
     }
     
     public function getModify ($id)
@@ -83,6 +123,9 @@ For more information check out:
     	$version=Modversion::find($id);
     	$version->downloads=$version->downloads+1;
     	$version->save();
+    	
+    	$mod=$version->mod;
+    	$event = Event::fire('mod.download', array($mod));
     	
     	$name=$version->mod["name"]."_".$version["mc_version"]."_".$version["version"].".".$version["type"];
     	$path=$version["path"];
