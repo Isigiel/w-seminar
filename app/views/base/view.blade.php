@@ -34,9 +34,22 @@
     <script src="http://cdn.awesonium.com/uikit/addons/notify/notify.min.js"></script>
     <link rel="stylesheet" href="http://cdn.awesonium.com/uikit/addons/notify/notify.min.css">
     
+    
     <!-- Latest compiled and minified JavaScript -->
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 
+    <!-- Require JS -->
+    <script data-main="scripts/main" src="{{URL::to("/require.js")}}"></script>
+    
+    <script>
+        require.config({
+            baseUrl: "/"
+        }
+        );
+    </script>
+
+    <script src="http://underscorejs.org/underscore-min.js"></script>
+    
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

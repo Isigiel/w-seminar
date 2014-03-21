@@ -19,6 +19,7 @@ Route::get('logout', function() {
 });
 
 Route::controller('mod','ModController');
+Route::controller('search','SearchController');
 Route::controller('config','ConfigController');
 Route::controller('register','RegisterController');
 Route::controller('concept','ConceptController');

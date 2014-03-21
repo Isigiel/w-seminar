@@ -8,3 +8,5 @@
         </div>
     @endforeach
 </div>
+<br><br>
+<a href="{{URL::to("mod/new")}}" class="btn btn-block btn-sm btn-success">Create new Mod</a>
