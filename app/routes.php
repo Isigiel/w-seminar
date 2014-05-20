@@ -12,21 +12,16 @@
 */
 
 Route::get('logout', function() {
- // logout from the system
-    Sentry::logout();
-    Alert::add("success","You're logged out now.");
-    return Redirect::to('concept/layout');
+// logout from the system
+	Sentry::logout();
+	Alert::add("success","You're logged out now.");
+	return Redirect::to('home');
 });
 
-Route::controller('mod','ModController');
-Route::controller('search','SearchController');
-Route::controller('config','ConfigController');
-Route::controller('register','RegisterController');
-Route::controller('concept','ConceptController');
-Route::controller('site','SiteController');
-Route::controller('cp','CpController');
-Route::controller('','IndexController');
 
-//Route::controller('/','IndexController');
-
-
+// THE NEW ORDER
+Route::controller('home','HomeController');
+Route::controller('account','AccountController');
+Route::resource('mod', 'ModController');
+Route::resource('version', 'VersionController');
+Route::resource('entry', 'EntryController');

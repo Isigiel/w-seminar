@@ -1,23 +1,15 @@
 <?php
 
-class HomeController extends BaseController {
+class HomeController extends BaseController 
+{
+	// No Filters needed, as this Controller only handles public requests
 
-	/*
-	|--------------------------------------------------------------------------
-	| Default Home Controller
-	|--------------------------------------------------------------------------
-	|
-	| You may wish to use controllers instead of, or in addition to, Closure
-	| based routes. That's great! Here is an example controller method to
-	| get you started. To route to this controller, just add the route:
-	|
-	|	Route::get('/', 'HomeController@showWelcome');
-	|
-	*/
-
-	public function showWelcome()
-	{
-		return View::make('hello');
-	}
-
+	// Index function
+    public function getIndex () {
+        $data['sites'] = Config::get('synopsis.sites');
+        $data['login_sites'] = Config::get('synopsis.login_sites');
+        $data['current'] = 'Home';
+        $data['mods'] = Mod::orderBy('created_at')->take(4)->get();
+        return View::make('home.view')->with($data);
+    }
 }

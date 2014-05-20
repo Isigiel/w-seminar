@@ -1,68 +1,41 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
-    
-    
-    <!-- Latest compiled and minified CSS for UIkit Bootstrap and Font-Awesome -->
-    <link rel="stylesheet" href="http://cdn.awesonium.com/uikit/css/uikit.min.css">
-    <link rel="stylesheet" href="http://bootswatch.com/yeti/bootstrap.min.css">
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
-    
-    <!-- Codemirror and marked dependencies for the Markdownarea -->
-    <link rel="stylesheet" href="http://cdn.awesonium.com/codemirror/lib/codemirror.css">
-    <script src="http://cdn.awesonium.com/codemirror/lib/codemirror.js"></script>
-    <script src="http://cdn.awesonium.com/codemirror/mode/markdown/markdown.js"></script>
-    <script src="http://cdn.awesonium.com/codemirror/addon/mode/overlay.js"></script>
-    <script src="http://cdn.awesonium.com/codemirror/mode/xml/xml.js"></script>
-    <script src="http://cdn.awesonium.com/codemirror/mode/gfm/gfm.js"></script>
-    <script src="http://cdn.awesonium.com/marked/marked.js"></script>
-    
-    <!-- JQuery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    
-    <!-- UIkit JS -->
-    <script src="http://cdn.awesonium.com/uikit/js/uikit.min.js"></script>
-    
-    <!-- Markdown Area JavaScript and CSS -->
-    <script src="http://cdn.awesonium.com/uikit/addons/markdownarea/markdownarea.min.js"></script>
-    <link rel="stylesheet" href="http://cdn.awesonium.com/uikit/addons/markdownarea/markdownarea.almost-flat.min.css">
-    <!-- Filepicker JS and CSS -->
-    <script src="http://cdn.awesonium.com/uikit/addons/form-file/form-file.min.js"></script>
-    <link rel="stylesheet" href="http://cdn.awesonium.com/uikit/addons/form-file/form-file.min.css">
-    <!-- Notify JS and CSS -->
-    <script src="http://cdn.awesonium.com/uikit/addons/notify/notify.min.js"></script>
-    <link rel="stylesheet" href="http://cdn.awesonium.com/uikit/addons/notify/notify.min.css">
-    
-    
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Synopsis - {{$current}}</title>
+  @yield("head")
 
-    <!-- Require JS -->
-    <script data-main="scripts/main" src="{{URL::to("/require.js")}}"></script>
-    
-    <script>
-        require.config({
-            baseUrl: "/"
-        }
-        );
-    </script>
-
-    <script src="http://underscorejs.org/underscore-min.js"></script>
-    
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-    
-    @yield('head')
-  </head>
-  <body style="background-image: url(http://cdn.awesonium.com/pattern/white_carbon.png); background-position: initial initial; background-repeat: initial initial; padding-top: 70px;">
-    
-    
-    @yield('body')
-  </body>
+  <link href="{{asset("assets/css/uikit.min.css")}}" rel="stylesheet">
+  <link href="{{asset("assets/css/uikit.addons.min.css")}}" rel="stylesheet">
+  <!-- Bootstrap -->
+  <link href="{{asset("assets/css/bootstrap.css")}}" rel="stylesheet">
+  <!-- Font-Awesome -->
+  <link href="{{asset("assets/css/font-awesome.css")}}" rel="stylesheet">
+  @yield("css")
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <script src="{{asset("assets/js/bootstrap.js")}}"></script>
+  <script src="{{asset("assets/js/uikit.min.js")}}"></script>
+  <script src="{{asset("assets/js/markdownarea.min.js")}}"></script>
+  @yield("script")
+  
+  @if(!Sentry::check())
+  <script src="{{asset("assets/js/validator.js")}}"></script>
+@endif
+  
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+</head>
+<body>
+  @include("base.nav")
+  @include("base.alerts")
+  @yield("body")
+</body>
 </html>

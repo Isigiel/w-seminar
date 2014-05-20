@@ -16,13 +16,20 @@ class CreateModsTable extends Migration {
 		{
 			$table->increments('id');
 			$table->timestamps();
+			$table->boolean('featured');
 			$table->string('name');
 			$table->string('author');
 		    $table->string('tags');
 		    $table->string('category');
-			$table->text('description');
+		    $table->string('icon');
+		    $table->string('splash');
+		    $table->string('head');
 			$table->integer('followers');
+			$table->integer('likes');
 			$table->integer('downloads');
+			$table->text('attributes-json');
+			$table->text('images-json');
+			$table->text('description');
 		});
 	}
 

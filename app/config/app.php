@@ -26,7 +26,7 @@ return array(
 	|
 	*/
 
-	'url' => 'http://isigiel.kd.io/ws',
+	'url' => 'isigiel.awesonium.com',
 
 	/*
 	|--------------------------------------------------------------------------

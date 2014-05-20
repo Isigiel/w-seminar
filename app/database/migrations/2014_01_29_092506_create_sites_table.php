@@ -16,9 +16,11 @@ class CreateSitesTable extends Migration {
 		{
 			$table->increments('id');
 			$table->timestamps();
+			$table->integer('mod_id');
+			$table->integer('user_id');
 			$table->string('title');
-			$table->string('mod_id');
-			$table->string('content');
+			$table->string('splash');
+			$table->text('content');
 		});
 	}
 

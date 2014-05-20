@@ -15,6 +15,8 @@ class AddUsernameToUserTable extends Migration {
 		Schema::table('users', function(Blueprint $table)
 		{
 			$table->string('username');
+			$table->string('mc-name');
+			$table->string('twitter');
 		});
 	}
 

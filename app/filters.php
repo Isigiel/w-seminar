@@ -39,7 +39,7 @@ Route::filter('auth', function()
 	if (!Sentry::check())
 	{
 	    Alert::add("danger","You must be logged in to perform this action!");
-	    return Redirect::guest('concept/layout');
+	    return Redirect::guest('home');
 	}
 	
 });

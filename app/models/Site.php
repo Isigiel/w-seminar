@@ -6,7 +6,7 @@
             return $this->belongsTo('Mod');
         }
         
-        public function blogentrys()
+        public function blogentriess()
         {
             return $this->hasMany("Blogentry");
         }
