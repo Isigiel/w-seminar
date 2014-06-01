@@ -1,3 +1,3 @@
 <div class="container">
-		{{Alert::render()}}
+	{{Alert::render()}}
 </div>

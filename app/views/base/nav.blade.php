@@ -112,6 +112,7 @@
                         <div class="col-sm-10">
                             <input required type="email" name="email" class="form-control" id="email" placeholder="Enter your Email-address">
                             <div class="help-block with-errors"></div>
+                            <span class="help-block"><i class="fa fa-envelope-o"></i>&nbsp;We will send an activation Mail, make sure you can access this Mailbox!</span>
                         </div>
 
                     </div>

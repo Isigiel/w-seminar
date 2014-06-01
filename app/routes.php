@@ -22,6 +22,8 @@ Route::get('logout', function() {
 // THE NEW ORDER
 Route::controller('home','HomeController');
 Route::controller('account','AccountController');
+Route::controller('register','RegisterController');
 Route::resource('mod', 'ModController');
 Route::resource('version', 'VersionController');
 Route::resource('entry', 'EntryController');
+Route::controller('','IndexController');

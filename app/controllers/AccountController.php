@@ -5,7 +5,7 @@ class AccountController extends BaseController
     
     // Controller Filters
     public function __construct() {
-        $this->beforeFilter('auth', array('except' => array('')));
+        $this->beforeFilter('auth', array('except' => array('getProfile')));
     }
 
     // Index function
@@ -13,7 +13,7 @@ class AccountController extends BaseController
     public function getIndex () {
         // Data collection
     	$data = array();
-    	$data['user'] = Sentry::getUser();
+    	$data['user'] = User::with('entries')->find(Sentry::getUser()['id']);
         $data['current'] = 'Account';
         $data['sites'] = Config::get('synopsis.sites');
         $data['login_sites'] = Config::get('synopsis.login_sites');
@@ -59,5 +59,26 @@ class AccountController extends BaseController
         $user->mc_name = $data['value'];
         $user->save();
         return Response::json(null, 200);
+    }
+
+    // Remove the introduction Panel
+    public function getStart () {
+        $user = User::find(Sentry::getUser()['id']);
+        $user->started = 0;
+        $user->save();
+
+        return Redirect::back();
+    }
+
+    // Show a Users profile
+    public function getProfile ($id) {
+        $user = User::with('entries','mods')->find($id);
+        $data['sites'] = Config::get('synopsis.sites');
+        $data['login_sites'] = Config::get('synopsis.login_sites');
+        $data['current'] = $user->username;
+        $data['sites'][2] = array('title'=>$user->username,'slug'=>"account/profile/$user->id");
+        $data['user'] = $user;
+
+        return View::make('account.user')->with($data);
     }
 }

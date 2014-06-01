@@ -88,7 +88,9 @@ class EntryController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+		Blogentry::destroy($id);
+
+		return Redirect::back();
 	}
 
 

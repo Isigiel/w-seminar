@@ -9,7 +9,14 @@ class HomeController extends BaseController
         $data['sites'] = Config::get('synopsis.sites');
         $data['login_sites'] = Config::get('synopsis.login_sites');
         $data['current'] = 'Home';
-        $data['mods'] = Mod::orderBy('created_at')->take(4)->get();
+        $data['new_mods'] = Mod::orderBy('created_at','DESC')->take(6)->get();
+        $data['high_mods'] = Mod::orderBy('downloads','DESC')->take(6)->get();
+        if (Sentry::check()) {
+        	$user = User::find(Sentry::getUser()['id']);
+        	$user->load('mods');
+        	$data['user'] = $user;
+        }
+
         return View::make('home.view')->with($data);
     }
 }

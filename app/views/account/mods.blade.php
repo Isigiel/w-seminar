@@ -1,8 +1,11 @@
 <div class="row">
 	@if($mods)
 		@foreach($mods as $mod)
-		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-			<h1><img style="max-height:48px; max-width:48px;" src="@if(@GetImageSize($mod->icon)) {{$mod->icon}} @else {{asset("assets/img/mod.png")}} @endif"><a href="{{URL::to("mod/$mod->name.$mod->id/edit")}}">{{$mod->name}}</a></h1>
+		<div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+			<h1><img style="max-height:48px; max-width:48px; margin-right:20px;" src="@if(@GetImageSize($mod->icon)) {{$mod->icon}} @else {{asset("assets/img/mod.png")}} @endif"><a href="{{URL::to("mod/$mod->name.$mod->id/edit")}}">{{$mod->name}}</a></h1>
+		</div>
+		<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+			<a data-method="DELETE" href="{{URL::to("mod/$mod->id")}}" class="pull-right btn btn-warning">Delete</a>
 		</div>
 		@endforeach
 	@endif
@@ -56,7 +59,7 @@
 						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 							<div class="form-group">
 								<label for="description">Description</label>
-								<textarea required data-minlength="10" id="description" name="description" class="form-control" rows="5"></textarea>
+								<textarea required id="description" name="description" class="form-control" rows="5"></textarea>
 								<span class="help-block with-errors"></span>
 							</div>
 						</div>

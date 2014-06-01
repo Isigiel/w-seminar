@@ -21,11 +21,11 @@
   <script src="{{asset("assets/js/uikit.min.js")}}"></script>
   <script src="{{asset("assets/js/markdownarea.min.js")}}"></script>
   @yield("script")
-  
+
   @if(!Sentry::check())
   <script src="{{asset("assets/js/validator.js")}}"></script>
-@endif
-  
+  @endif
+
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
@@ -37,5 +37,11 @@
   @include("base.nav")
   @include("base.alerts")
   @yield("body")
+
+  <script>
+    $(document).ready(function(){
+      $('div.alert').delay( 3000 ).fadeOut('slow')
+    });
+  </script>
 </body>
 </html>

@@ -13,13 +13,13 @@
 
 App::before(function($request)
 {
-	//
+//
 });
 
 
 App::after(function($request, $response)
 {
-	//
+//
 });
 
 /*
@@ -35,38 +35,42 @@ App::after(function($request, $response)
 
 Route::filter('auth', function()
 {
-    
+
 	if (!Sentry::check())
 	{
-	    Alert::add("danger","You must be logged in to perform this action!");
-	    return Redirect::guest('home');
+		Alert::add("danger","You must be logged in to perform this action!");
+		return Redirect::guest('home');
 	}
-	
+
 });
 
 Route::filter('author', function()
 {
-    $mid = Request::segment(3);
-    $mod=Mod::find($mid);
-    $uid = Sentry::getUser()["id"];
-    $owner=false;
-    $authors=false;
-    $authors = $mod->authors;
-    
-    if ($authors)
-    {
-    foreach ($authors as $author)
-    {
-        if ($author["id"] == $uid)
-            $owner=true;
-    }}
-    
-    if (!$owner)
-    {
-        Alert::add("danger","You are not allowed to edit this mod!");
-	    return Redirect::guest('mod/browse');
-    }
-});
+	$url = Request::segment(2);
+	$url = explode('.', $url);
+	$mid = $url[count($url)-1];
+	$mod=Mod::find($mid);
+	$user = Sentry::getUser();
+	$uid = $user['id'];
+	$uname = $user['username'];
+	$owner=false;
+	$authors=false;
+	$authors = $mod->authors;
+
+	if ($authors)
+	{
+		foreach ($authors as $author)
+		{
+			if ($author["id"] == $uid)
+				$owner=true;
+		}}
+
+		if (!$owner)
+		{
+			Alert::add("danger","You are not allowed to edit <strong>$mod->name</strong>! It belongs to <strong>$uname</strong>.");
+			return Redirect::guest('account');
+		}
+	});
 
 
 Route::filter('auth.basic', function()
