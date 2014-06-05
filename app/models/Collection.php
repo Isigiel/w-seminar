@@ -6,7 +6,7 @@ class Collection extends Eloquent
     }
 
     public function mods () {
-        return $this->hasManyThrough('Mod','Modversion');
+        return $this->belongsToMany('Mod');
     }
 
     public function author () {

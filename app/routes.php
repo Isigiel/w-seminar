@@ -24,6 +24,7 @@ Route::controller('home','HomeController');
 Route::controller('search','SearchController');
 Route::controller('account','AccountController');
 Route::controller('register','RegisterController');
+Route::controller('collection','CollectionController');
 Route::resource('mod', 'ModController');
 Route::resource('version', 'VersionController');
 Route::resource('entry', 'EntryController');
