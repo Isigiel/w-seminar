@@ -41,6 +41,7 @@
 		<!-- Nav tabs -->
 		<ul class="nav nav-tabs" id="myTab">
 			<li><a href="#mods" data-toggle="tab">Mods</a></li>
+            <li><a href="#collections" data-toggle="tab">Collections</a></li>
 			<li class="active"><a href="#blog" data-toggle="tab">Status Updates</a></li>
 			@if(count($user->entries)!=0)
 			<li><a href="#index" data-toggle="tab">Manage Blogentries</a></li>
@@ -57,8 +58,11 @@
 				@include("account.blog")
 			</div>
 			<div class="tab-pane fade" id="mods">
-				@include("account.mods")
-			</div>
+                @include("account.mods")
+            </div>
+            <div class="tab-pane fade" id="collections">
+                @include("account.collections")
+            </div>
 			@if(count($user->entries)!=0)
 			<div class="tab-pane fade" id="index">
 				@include("account.index")
