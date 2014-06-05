@@ -44,7 +44,9 @@
 			<li class="active"><a href="#settings" data-toggle="tab">General Settings</a></li>
 			<li><a href="#versions" data-toggle="tab">Version-Management</a></li>
 			<li><a href="#addition" data-toggle="tab">Additional Data</a></li>
+			@if($character)
 			<li><a href="#character" data-toggle="tab">Mod-Character</a></li>
+			@endif
 		</ul>
 
 		<!-- Tab panes -->
@@ -58,9 +60,11 @@
 			<div class="tab-pane fade" id="versions">
 				@include("mod.edit.versions")
 			</div>
+			@if($character)
 			<div class="tab-pane fade" id="character">
 				@include("mod.edit.character")
 			</div>
+			@endif
 		</div>
 	</div>
 </div>

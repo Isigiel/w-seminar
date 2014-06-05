@@ -40,6 +40,11 @@
 							<div class="site-render">
 							</div>
 						</div>
+						@if($mod->attributes_json != "")
+						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+							<a href="{{URL::to("/search/mod-compare/$mod->id")}}" class="btn btn-block btn-lg btn-primary">Search for similar mods</a>
+						</div>
+						@endif
 
 					</div>
 				</div>

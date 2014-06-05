@@ -51,4 +51,12 @@
             }
             return $url;
         }
+
+        public static function distance ($original, $compare) {
+        	$dist = 0;
+        	foreach ($original as $key => $value) {
+        		$dist += pow($value-$compare[$key], 2);
+        	}
+        	return sqrt($dist);
+        }
     }

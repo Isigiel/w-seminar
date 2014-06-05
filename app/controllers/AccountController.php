@@ -17,10 +17,11 @@ class AccountController extends BaseController
         $data['current'] = 'Account';
         $data['sites'] = Config::get('synopsis.sites');
         $data['login_sites'] = Config::get('synopsis.login_sites');
-        $data['mods'] = DB::select("	SELECT *
-         					FROM modAuthors a, mods m 
-         					WHERE a.user_id = ?
-         					AND a.mod_id = m.id", array($data['user']['id']));
+        $data['mods'] = DB::select("    SELECT *
+         					            FROM modAuthors a, mods m 
+         					            WHERE a.user_id = ?
+         					            AND a.mod_id = m.id", 
+                                        array($data['user']['id']));
     	if (count($data['mods']) == 0)
         	$data['mods']=false;
 

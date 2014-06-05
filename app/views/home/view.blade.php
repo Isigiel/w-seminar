@@ -53,8 +53,9 @@
                         <p class="list-group-item-text">
                             <ul>
                                 <li>Update the Description using <a href="http://daringfireball.net/projects/markdown/">markdown</a></li>
+                                <li>Allow Users to find your mod by defining it's chracter <small>(Not for Storage and Map Categories)</small></li>
                                 <li>Make your mod unique by changing Icon, Splash- and Header-Image</li>
-                                <li>Finally, add some versions to your mod, so users can use it <em><strong style="padding-left: 10px;">IMPORTANT!</strong></em></li>
+                                <li>Finally, add some versions to your mod, so users can use it.&nbsp;<em><strong style="padding-left: 10px;">IMPORTANT!</strong></em></li>
                             </ul>
                         </p>
                     </li>
@@ -66,6 +67,13 @@
                                 <li>Tweet with <i>#synopsis</i></li>
                                 <li>Follow and support <a href="http://www.patreon.com/isigiel">Isigiel</a> on Patreon</li>
                             </ul>
+                        </p>
+                    </li>
+                    <li class="list-group-item">
+                        <span class="badge">&nbsp;4&nbsp;</span>
+                        <h4 class="list-group-item-heading">Remove this thing</h4>
+                        <p class="list-group-item-text">
+                            If you don't need this instructions any longer, remove them to see an overview of your mods. <br><em>Be careful!</em>&nbsp;This panel will never return!
                         </p>
                     </li>
                 </ul>

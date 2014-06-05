@@ -6,7 +6,7 @@ class ModController extends \BaseController {
 // Controller Filters
 	public function __construct() {
 		$this->beforeFilter('auth', array('except' => array('show')));
-		$this->beforeFilter('author', array('except' => array('show')));
+		$this->beforeFilter('author', array('except' => array('show','store')));
 	}
 
 /**
@@ -85,7 +85,12 @@ public function edit($id)
 	$data['login_sites'] = Config::get('synopsis.login_sites');
 	$data['sites'][2] = array('title'=>$mod->name,'slug'=>"mod/$mod->name.$mod->id/edit");
 	$data['current'] = $mod->name;
+	$data['categories']=Config::get('synopsis.categories');
+	$data['character']=Config::get('synopsis.character')[$data['categories'][$mod->category]];
 	$data['mod'] = $mod;
+	$data['attributes'] = false;
+	$data['attributes'] = json_decode($mod->attributes_json,true);
+	// return Response::json($data['attributes']);
 
 	return View::make('mod.edit.view')->with($data);
 }
@@ -108,6 +113,9 @@ public function update($id)
 		$mod->name = $input['name'];
 		$mod->author = $input['author'];
 		$mod->tags = $input['tags'];
+		if ($mod->category != $input['category']) {
+			$mod->attributes_json = '';
+		}
 		$mod->category = $input['category'];
 		break;
 
@@ -124,6 +132,10 @@ public function update($id)
 		$mod->tracker = $input['tracker'];
 		$mod->wiki = $input['wiki'];
 		$mod->forum = $input['forum'];
+		break;
+
+		case 'character':
+		$mod->attributes_json = json_encode(Input::get('char'));
 		break;
 	}
 
