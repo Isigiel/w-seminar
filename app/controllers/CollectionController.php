@@ -5,7 +5,7 @@
  * Date: 05.06.14
  * Time: 22:11
  */
-class AccountController extends BaseController
+class CollectionController extends BaseController
 {
 
     // Controller Filters
